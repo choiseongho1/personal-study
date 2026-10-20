@@ -1,6 +1,7 @@
 **/.gradle/
 **/build/
 **/out/
+**/target/
 **/.idea/
 **/node_modules/
 **/.env

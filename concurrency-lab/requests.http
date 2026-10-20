@@ -1,0 +1,50 @@
+### TODO 4 구현 완료: 아래 501·미구현 주석은 이전 학습 이력이며, 현재 실패 API도 처리 후 204를 반환합니다.
+### IntelliJ HTTP Client 또는 VS Code REST Client에서 실행
+### 주문 생성·만료·승인 반영을 구현했습니다. 결제 실패 API는 아직 HTTP 501을 반환합니다.
+
+### 주문 생성: 이벤트 1에는 초기 재고 100개가 있습니다.
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "eventId": 1
+}
+
+### 주문 만료: 실제 주문 ID로 바꾸세요. 기한 전에는 변경 없이 종료합니다.
+POST http://localhost:8080/api/orders/1/expire
+
+### H2 콘솔에서 SELECT id, order_id, status FROM payment_attempts; 로 결제 시도 ID 확인
+### 결제 승인: URL의 ID는 주문 ID가 아니라 payment_attempts.id입니다.
+POST http://localhost:8080/api/practice/payments/1/succeeded
+Content-Type: application/json
+
+{
+  "providerPaymentId": "fake-payment-1"
+}
+
+### 늦은 성공 후 H2 콘솔에서 SELECT * FROM refund_requests; 로 환불 대기 확인
+### 결제 최종 실패 — TODO 4 미구현
+POST http://localhost:8080/api/practice/payments/1/failed
+
+
+
+
+### TODO 6: 가짜 결제사에 결제 요청 — 직접 구현 전에는 501
+POST http://localhost:8080/api/practice/payments/1/request
+
+### TODO 7: 원래 결제 결과 재조회 — 직접 구현 전에는 501
+POST http://localhost:8080/api/practice/payments/1/reconcile
+
+### TODO 6~11 구현 완료: 위 501·미구현 표시는 초기 학습 이력입니다.
+### 승인 후 타임아웃 시나리오 선택 (자동 작업자가 꺼진 기본 모드에서 진행)
+POST http://localhost:8080/api/practice/payments/1/scenario?scenario=TIMEOUT_AFTER_APPROVAL
+
+### Outbox → inbox/payment 작업 → 결제 → 환불 단계별 진행: 필요에 따라 여러 번 호출
+POST http://localhost:8080/api/practice/work/run
+
+### 만료 배치 수동 실행
+POST http://localhost:8080/api/practice/expiry/run
+
+### 작업 상태와 실패 원인 확인
+GET http://localhost:8080/api/practice/work

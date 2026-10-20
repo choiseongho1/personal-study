@@ -4,6 +4,7 @@
 
 | 프로젝트 | 소스·테스트 코드 컴파일 | 실행한 기존 테스트 |
 | --- | --- | --- |
+| concurrency-lab | 통과 (JDK 21, Gradle 9.8.1) | 전체 64개 통과, 실패·오류·건너뜀 0개 |
 | redis-sample | 통과 | Redis 서버 필요, 실행하지 않음 |
 | memo-redis | 통과 | MemoServiceTest / MemoFavoriteServiceTest / MemoDeleteServiceTest / MemoUpdateServiceTest, 13개 통과 |
 | random-box-system | 통과 | RandomBoxServiceTest / CouponServiceTest / PurchaseServiceTest, 27개 통과 |
@@ -16,6 +17,12 @@
 - 누락된 Gradle Wrapper JAR를 복구하고 8.14.3으로 맞췄습니다. 배포 ZIP의 공식 SHA-256을 확인하고 Wrapper 설정에도 고정했습니다.
 - 메모 즐겨찾기 테스트에 이벤트 발행자 Mock을 추가하고 메모 ID·즐겨찾기 상태가 이벤트에 담기는지 검증했습니다.
 - 구매 테스트에 추가된 재고·대기열·알림 의존성의 Mock과 재고 감소 성공 응답을 준비했습니다. 구매 시 재고 감소와 성공 알림 호출을 확인했습니다.
+
+## concurrency-lab 추가 검증
+
+2026-10-20, Windows와 Amazon Corretto JDK 21.0.8, 프로젝트의 Gradle 9.8.1 Wrapper로 `build`를 실행했습니다. 소스·테스트 컴파일과 JAR 패키징, 기존 전체 테스트가 통과했습니다. 내장 KRaft 브로커를 사용하는 Kafka 발행·소비·중복·재전달 테스트 및 파일 DB·가짜 결제사 장부의 재시작 복구 테스트를 포함합니다.
+
+Docker Compose로 구동한 외부 MySQL·Kafka 및 실제 결제사 연동은 이번 검증 범위에 포함하지 않습니다. 기존 6개 프로젝트에 대한 아래 한계와 별도로 해석합니다.
 
 ## 확인 범위와 남은 과제
 

@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3307/concurrency_lab?connectionTimeZone=UTC}
+    username: ${DB_USERNAME:lab}
+    password: ${DB_PASSWORD:lab}
+  h2:
+    console:
+      enabled: false

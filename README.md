@@ -7,6 +7,7 @@ Java와 Spring으로 백엔드의 동작 원리를 직접 확인한 학습 모�
 
 | 주제 | 폴더 | 확인할 내용 |
 | --- | --- | --- |
+| 동시성·결제 정합성 설계 | [concurrency-lab](concurrency-lab) | 재고 예약, 결제 멱등성, UNKNOWN 재조회, 늦은 승인 환불, Outbox/Inbox, 영속 작업·재시작 복구 |
 | Redis 동시성·캐시 | [redis-sample](redis-sample) | 락 없음 / Redisson / WATCH / Lua 비교, TTL, 랭킹, Pub/Sub, Streams |
 | Redis 도메인 적용 | [memo-redis](memo-redis) | 조회수 누적, 인기 메모 점수, 즐겨찾기 이벤트, QueryDSL 검색 |
 | 도메인 모델링 | [random-box-system](random-box-system) | 구매·쿠폰 검증, 확률 기반 추첨, 재고·대기열·알림 |
@@ -16,6 +17,8 @@ Java와 Spring으로 백엔드의 동작 원리를 직접 확인한 학습 모�
 
 ## 먼저 읽을 코드
 
+동시성·데이터 정합성 설계를 한 흐름으로 보려면 [concurrency-lab 학습 안내](concurrency-lab/README.md)와 [재고와 결제 정합성 학습 기록](concurrency-lab/docs/blog/재고와-결제-정합성-학습기록.md)부터 읽을 수 있습니다.
+
 1. [StockService](redis-sample/src/main/java/com/example/service/StockService.java)와 [Lua 동시성 테스트](redis-sample/src/test/java/com/example/StockLuaConcurrencyTest.java): 같은 재고 문제를 여러 방식으로 풀어보기.
 2. [MemoViewCountService](memo-redis/src/main/java/com/study/domain/memo/service/MemoViewCountService.java): Redis에 증분을 모아 DB로 반영하는 과정과 원자성의 경계 살펴보기.
 3. [RandomBoxServiceTest](random-box-system/src/test/java/com/randombox/domain/randombox/RandomBoxServiceTest.java): 도메인 규칙과 예외 시나리오 읽기.
@@ -24,7 +27,7 @@ Java와 Spring으로 백엔드의 동작 원리를 직접 확인한 학습 모�
 
 ## 실행
 
-각 폴더는 독립된 Gradle 프로젝트입니다. JDK 17을 사용하며 Gradle Wrapper를 포함합니다.
+각 폴더는 독립된 Gradle 프로젝트이며 Gradle Wrapper를 포함합니다. `concurrency-lab`은 JDK 21을, 나머지 프로젝트는 JDK 17을 사용합니다.
 
 ```powershell
 cd redis-sample

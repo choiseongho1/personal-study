@@ -34,5 +34,12 @@
     "commit": "a9a2574dd282ba7912c5aa4b817d169b273eb1e0",
     "sourcePath": "high-traffic-bulk-insert/",
     "destination": "bulk-insert-lab"
+  },
+  {
+    "sourceKind": "local-directory",
+    "sourcePath": "concurrency-lab",
+    "destination": "concurrency-lab",
+    "importedOn": "2026-10-20",
+    "description": "개인 동시성·데이터 정합성 설계 실습 원본 폴더에서 소스·테스트·실행 설정·최종 학습 기록 이관"
   }
 ]
