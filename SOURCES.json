@@ -1,0 +1,38 @@
+[
+  {
+    "repository": "https://github.com/choiseongho1/redis-sample",
+    "commit": "198e61417663d8a23d3f826e740d1d263c63bb7c",
+    "sourcePath": "",
+    "destination": "redis-sample"
+  },
+  {
+    "repository": "https://github.com/choiseongho1/memo-redis",
+    "commit": "6c75731fa033fc4f87ada99185faf86d5d5199a5",
+    "sourcePath": "",
+    "destination": "memo-redis"
+  },
+  {
+    "repository": "https://github.com/choiseongho1/random-box-system",
+    "commit": "fb47766fba5855a580464603b889c1fd185ea7ba",
+    "sourcePath": "",
+    "destination": "random-box-system"
+  },
+  {
+    "repository": "https://github.com/choiseongho1/jpa-sample",
+    "commit": "4d7f5ade9b1b199d9f8d8e4e5769c1b2560eaebd",
+    "sourcePath": "",
+    "destination": "jpa-sample"
+  },
+  {
+    "repository": "https://github.com/choiseongho1/batch-sample",
+    "commit": "4edf6539f0525b88f28a8134eba48839839bc0a3",
+    "sourcePath": "",
+    "destination": "batch-sample"
+  },
+  {
+    "repository": "https://github.com/choiseongho1/traffic-lab",
+    "commit": "a9a2574dd282ba7912c5aa4b817d169b273eb1e0",
+    "sourcePath": "high-traffic-bulk-insert/",
+    "destination": "bulk-insert-lab"
+  }
+]
